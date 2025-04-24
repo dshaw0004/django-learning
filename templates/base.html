@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Django Site{% endblock title %}</title> {# Default title #}
+</head>
+<body>
+    <header>
+        <h1>My Awesome Django Learning Site</h1>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Content from child templates will go here -->
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>© 2024 - Learning Django</p>
+    </footer>
+</body>
+</html>
