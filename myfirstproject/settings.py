@@ -26,8 +26,9 @@ SECRET_KEY = 'django-insecure-9=sj25ay3u6mt&!qtyturo96rt9%p$7r-_ktao((a7jd79vgzh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['onrender.com', 'django-learning-pehn.onrender.com', 'localhost', '127.0.0.1']
+# to avoid django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'django-learning-pehn.onrender.com'. You may need to add 'django-learning-pehn.onrender.com' to ALLOWED_HOSTS.
+# when hosting it on render.com
 
 # Application definition
 

@@ -1,39 +1,50 @@
 {% extends "base.html" %}
 
-{% block title %}Dynamic Home Page{% endblock title %} {# Updated title #}
+{% block title %}Home Page with Notes &amp; Form{% endblock title %} {# Updated title #}
 
 {% block content %}
-<h2>Welcome to the Dynamic Home Page, {{ name }}!</h2> {# Using the 'name' variable #}
-<p>This content comes from the <code>home.html</code> template.</p>
+<h2>Welcome to the Dynamic Home Page, {{ name }}!</h2>
+<p>Project: {{ info.project }}, Lesson: {{ info.lesson }}</p>
 
 <hr>
 
-<h3>Current Information:</h3>
-<p>The current date and time is: {{ current_datetime }}</p> {# Displaying the datetime object #}
-<p>Project: {{ info.project }}, Lesson: {{ info.lesson }}</p> {# Accessing nested dictionary #}
+<h3>Add a New Note:</h3>
+<form method="POST" action=""> {# POST method, action="" means submit to the current URL #}
+  {% csrf_token %} {# CRUCIAL for security! #}
+
+  {{ form.as_p }} {# Render the form fields as paragraphs #}
+  {# Other ways to render: #}
+  {# {{ form.as_table }} #}
+  {# {{ form.as_ul }} #}
+  {# Or render fields manually for more control: #}
+  <!--
+  <div class="form-field">
+    {{ form.text.label_tag }}
+    {{ form.text }}
+    {% if form.text.help_text %}<small>{{ form.text.help_text }}</small>{% endif %}
+    {% for error in form.text.errors %}<p style="color:red;">{{ error }}</p>{% endfor %}
+  </div>
+  -->
+
+  <button type="submit">Save Note</button>
+</form>
 
 <hr>
 
-<h3>Your Courses:</h3>
-{% if courses %} {# Check if the 'courses' list exists and is not empty #}
-    <ul>
-        {% for course in courses %} {# Loop through the 'courses' list #}
-            <li>{{ course }}</li> {# Display each item in the list #}
-        {% empty %} {# Optional: Displayed if the list is empty #}
-            <li>You are not enrolled in any courses yet.</li>
-        {% endfor %} {# End the for loop #}
-    </ul>
+<h3>Your Notes:</h3>
+{# ... (rest of the notes display section remains the same) ... #}
+{% if notes_list %}
+<ul>
+  {% for note_item in notes_list %}
+  <li>
+    <p>{{ note_item.text }}</p>
+    <small><em>Created on: {{ note_item.created_at|date:"F j, Y, P" }}</em></small>
+  </li>
+  {% endfor %}
+</ul>
 {% else %}
-    <p>No course information available.</p>
-{% endif %} {# End the if statement #}
-
-<hr>
-
-<h3>Login Status:</h3>
-{% if is_logged_in %} {# Using the boolean variable #}
-    <p>Status: You are currently logged in.</p>
-{% else %}
-    <p>Status: You are currently logged out.</p>
+<p>You haven't created any notes yet!</p>
 {% endif %}
 
+{# ... (rest of template for courses, login status, etc.) ... #}
 {% endblock content %}
