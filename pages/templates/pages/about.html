@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+    <h2>{{ page_title }}</h2>
+    <p>Welcome to our Django learning project! We are building this site step by step.</p>
+    <p>This is a demonstration of how to create multiple pages and link between them.</p>
+
+    <h3>Contact Us</h3>
+    <p>If you have any questions, feel free to reach out to: {{ contact_email }}</p>
+
+    <p><a href="{% url 'pages:home' %}">Back to Home Page</a></p> {# Link back to home #}
+{% endblock content %}
