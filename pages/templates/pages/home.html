@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Home Page with Notes &amp; Form{% endblock title %} {# Updated title #}
 
-{% block content %}
-<h2>Welcome to the Dynamic Home Page, {{ name }}!</h2>
+{% block static_imports %}
+<link rel="stylesheet" href="{% static 'pages/custom_pages.css' %}" />
+{% endblock static_imports %}
+
+{% block content %} <h2>Welcome to the Dynamic Home
+  Page, {{ name }}!</h2>
 <p>Project: {{ info.project }}, Lesson: {{ info.lesson }}</p>
 
 <hr>

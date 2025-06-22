@@ -26,10 +26,7 @@ SECRET_KEY = 'django-insecure-9=sj25ay3u6mt&!qtyturo96rt9%p$7r-_ktao((a7jd79vgzh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['onrender.com',
-                 'django-learning-pehn.onrender.com', 'localhost', '127.0.0.1']
-# to avoid django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'django-learning-pehn.onrender.com'. You may need to add 'django-learning-pehn.onrender.com' to ALLOWED_HOSTS.
-# when hosting it on render.com
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -120,18 +117,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_URL = 'static/'
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Additional locations of static files (project-level static files)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'), # Look for a 'static' folder in the project root
+]
 
-if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
