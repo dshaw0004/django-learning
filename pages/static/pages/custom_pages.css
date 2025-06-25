@@ -1,0 +1,5 @@
+/* this is app specific static file */
+
+h2:hover {
+  scale: 1.05;
+}

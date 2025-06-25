@@ -37,12 +37,15 @@
 <hr>
 
 <h3>Your Notes:</h3>
-{# ... (rest of the notes display section remains the same) ... #}
 {% if notes_list %}
 <ul>
   {% for note_item in notes_list %}
   <li>
-    <p>{{ note_item.text }}</p>
+    {# Make the note text a link to its detail page #}
+    <a href="{% url 'pages:note_detail' note_id=note_item.id %}">
+      {{ note_item.text|truncatewords:15 }} {# Show a truncated version in the list #}
+    </a>
+    <br> {# Added for better spacing if needed #}
     <small><em>Created on: {{ note_item.created_at|date:"F j, Y, P" }}</em></small>
   </li>
   {% endfor %}

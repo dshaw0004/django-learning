@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %} {# If you need app-specific static files for this page #}
+
+{% block title %}Note: {{ note.text|truncatewords:5 }}{% endblock title %}
+
+{% block static_imports %}
+<link rel="stylesheet" href="{% static 'pages/custom_pages.css' %}" />
+{% endblock static_imports %}
+
+{% block content %}
+<h2>Note Detail</h2>
+<hr>
+<h3>{{ note.text }}</h3>
+<p><strong>Created:</strong> {{ note.created_at|date:"F j, Y, P" }}</p>
+<p><strong>ID:</strong> {{ note.id }}</p>
+
+<hr>
+<a href="{% url 'pages:home' %}">Back to All Notes</a>
+{# We will add Edit and Delete links here later #}
+{% endblock content %}

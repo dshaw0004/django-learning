@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404 # Add get_object_or_404
 from django.utils import timezone
 import datetime
 from .models import Note
@@ -48,3 +48,20 @@ def about_page_view(request):
         'contact_email': 'info@awesomesite.com',
     }
     return render(request, template_name, context)
+
+# NEW VIEW for Note Detail Page
+def note_detail_view(request, note_id):
+    """
+    Displays the details of a single note.
+    """
+    # Attempt to get the note with the given id.
+    # If not found, it will automatically raise a 404 error.
+    note = get_object_or_404(Note, pk=note_id)
+
+    template_name = "pages/note_detail.html" # We'll create this template
+    context = {
+        'note': note, # Pass the single note object to the template
+    }
+    return render(request, template_name, context)
+
+
